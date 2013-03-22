@@ -37,8 +37,8 @@ angular
 		  $scope.correct = angular._.reduce($scope.ok, function(a,b){ return a+b; });
 		  $scope.total = $scope.ok.length; 
 		  $scope.running = true;
-		  $scope.start_time = Math.floor((new Date()).getTime()/1E3) + 5*60;
-		  $scope.timer = "5:00";
+		  $scope.start_time = Math.floor((new Date()).getTime()/1E3) + 60;
+		  $scope.timer = "1:00";
 
 			var self = $scope;
 		  setTimeout(function() { self.update_time()}, 667);
