@@ -2,18 +2,6 @@ angular
 	.module("tables", [])
 	.controller("MainCtrl", function($scope) {
 		$scope.init = function() {
-			console.log("init");
-
-			$scope.index = 0;
-			$scope.ok = [0,0,0,0,0,0,0,0,0,0,0,0,0];
-			$scope.xs = angular._.shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12]);
-			$scope.x = $scope.xs[$scope.index]; 
-			$scope.y = angular._.shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12]).pop();
-			$scope.answer = "?";
-
-		  $scope.correct = angular._.reduce($scope.ok, function(a,b){ return a+b; });
-		  $scope.total = $scope.ok.length; 
-
 			angular.element(document)
 				.off("keydown")
 				.on("keydown", function(e) {
@@ -35,6 +23,38 @@ angular
 							.find("#"+key).trigger("focus").trigger("vclick")
 					}
 				});
+		};
+
+		$scope.start = function() {
+			$scope.index = 0;
+			$scope.ok = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+			$scope.xs = angular._.shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12]);
+			$scope.x = $scope.xs[$scope.index]; 
+			$scope.y = angular._.shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12]).pop();
+			$scope.answer = "?";
+			$scope.wrong = 0;
+
+		  $scope.correct = angular._.reduce($scope.ok, function(a,b){ return a+b; });
+		  $scope.total = $scope.ok.length; 
+		  $scope.running = true;
+		  $scope.start_time = Math.floor((new Date()).getTime()/1E3) + 5*60;
+		  $scope.timer = "5:00";
+
+			var self = $scope;
+		  setTimeout(function() { self.update_time()}, 667);
+		};
+
+		$scope.update_time = function() {
+			var new_time = $scope.start_time - Math.floor((new Date()).getTime()/1E3);
+			var new_min = Math.floor(new_time / 60);
+			var new_sec = (new_time - (new_min * 60));
+			$scope.timer = "" + new_min + ":" + (new_sec < 10 ? "0"+new_sec : new_sec);
+		  $scope.$apply();
+
+		  //TODO: Timer is zero - stop
+
+			var self = $scope;
+		  setTimeout(function() { self.update_time()}, 333 );
 		};
 
 		$scope.$watch("answer", function(a, b) {
@@ -62,15 +82,34 @@ angular
 			}
 		});
 
+		$scope.refresh = function() {
+			console.log("refresh");
+		};
+
 		$scope.next = function(correct) {
 			// todo - check for wrongs, reset after last one, etc
 			$scope.ok[$scope.index] = correct;
-			$scope.index++;
+			if (!correct) {
+				$scope.wrong++;
+			}
+			$scope.correct = angular._.reduce($scope.ok, function(a,b){ return a+b; });
+			if ($scope.correct == $scope.total) {
+				// TODO: Done
+				$scope.start();
+			}
+			else {
+				var current_index = $scope.index;
+
+				$scope.index = ($scope.index + 1) % $scope.total;
+				while($scope.ok[$scope.index] == 1 && ($scope.index != current_index)) {
+					$scope.index = ($scope.index + 1) % $scope.total;
+				}
+			}
+
 			$scope.x = $scope.xs[$scope.index]; 
 			$scope.answer = "?";
 			$scope.gotit_right = false;
 			$scope.gotit_wrong = false;
-			$scope.correct = angular._.reduce($scope.ok, function(a,b){ return a+b; });
 			$scope.$apply();
 		};
 
@@ -94,12 +133,17 @@ angular
 			}
 		};
 
-		$scope.refresh = function() {
-			console.log("refresh");
-		};
-
 		$scope.operator = "+";
 		$scope.activeBtnClass = angular.element.mobile.activeBtnClass;
+		$scope.index = -1;
+		$scope.x = "X" 
+		$scope.y = "Y" 
+		$scope.answer = "?";
+		$scope.gotit_right = false;
+		$scope.gotit_wrong = false;
+		$scope.correct = "x";
+		$scope.total = "y"; 
+		$scope.timer = "";
 	})
 	.config(["$routeProvider", "$httpProvider",
 		function($routeProvider, $httpProvider) {
@@ -113,14 +157,7 @@ angular
 			var options = {transition: "slide", speed: "fast"};
 			$routeProvider.when("/", {jqmOptions: options, templateUrl: "#main"})
 		}])
-	 .run(["$rootScope", "$location",
-		function($rootScope, $location) {
+	 .run(["$rootScope",
+		function($rootScope) {
 			$rootScope._ = angular._ = window._;
-			// watch location changes for 404s
-			$rootScope.$watch(function() {
-				return $location.path();
-			},
-			function(to_path, from_path) {
-				console.log("to_path", to_path, "from_path", from_path);
-			});
 		}]);

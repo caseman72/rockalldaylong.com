@@ -16,15 +16,15 @@
 <body>
 <div data-role="page" id="main" ng-controller="MainCtrl" ngm-pagebeforeshow="init()" ngm-pageshow="refresh()">
 	<div data-theme="b" data-role="header">
-		<a data-role="button" class="ui-btn-left smalltext" data-icon="">Start</a>
+		<a data-role="button" class="ui-btn-left smalltext" data-icon="" ngm-vclick="start()">Start</a>
 		<a data-role="button" class="ui-btn-right smalltext" data-icon="">Options</a>
 		<h3>Times (&times;) Tables</h3>
 	</div>
 	<div data-role="content">
 		<div class="ui-grid-b">
-			<div class="ui-block-a">{{correct}}/{{total}}</div>
+			<div class="ui-block-a">{{correct}}/{{total + wrong}}</div>
 			<div class="ui-block-b border">{{x}}</div>
-			<div class="ui-block-c">{ { timer } }</div>
+			<div class="ui-block-c">{{timer}}</div>
 			<div class="ui-block-a">&times;</div>
 			<div class="ui-block-b border">{{y}}</div>
 			<div class="ui-block-c">&nbsp;</div>
