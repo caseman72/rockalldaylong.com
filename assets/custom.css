@@ -1,0 +1,38 @@
+.ui-block-a, .ui-block-b, .ui-block-c,
+.ui-block-d, .ui-block-e, .ui-block-f {
+	text-align: center;
+	padding: 2% 0;
+	font-size: 20px;
+	border: 1px solid #F0F0F0;
+}
+
+.border {
+}
+#focusonthis {
+	height:1px;
+	width:1px;
+	font-size:1px;
+	line-height:1px;
+	color: transparent;
+	background: transparent;
+	border: none;
+}
+
+.ui-btn-icon-notext {
+	margin: 0 auto !important;
+}
+
+
+/* .small-margin { */
+/* 	padding-top: 1.34% !important; */
+/* 	padding-bottom: 1.34% !important; */
+/* 	padding-left: 10%; */
+/* 	padding-right: 10%; */
+/* } */
+
+.ui-select, .ui-select div {
+	padding-top: 0 !important;
+	margin-top: 0 !important;
+	padding-bottom: 0 !important;
+	margin-bottom: 0 !important;
+}
