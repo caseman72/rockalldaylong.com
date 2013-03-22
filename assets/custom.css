@@ -5,6 +5,16 @@
 	font-size: 20px;
 	border: 1px solid #F0F0F0;
 }
+.smaller {
+	padding: 1.8% 0 !important;
+}
+
+.smalltext {
+	top: 8px !important;
+}
+.smalltext .ui-btn-text {
+	font-size: 14px;
+}
 
 .border {
 }
@@ -21,6 +31,19 @@
 .ui-btn-icon-notext {
 	margin: 0 auto !important;
 }
+.special-notext > span > span {
+	top: 15px !important;
+}
+
+.ui-btn-inner {
+	padding-top: 2.5% !important;
+	padding-bottom: 2.5% !important;
+}
+
+.ui-btn-text {
+	font-size: 20px;
+}
+
 
 
 /* .small-margin { */

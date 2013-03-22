@@ -39,23 +39,37 @@ angular
 
 		$scope.$watch("answer", function(a, b) {
 			if(a) {
-				setTimeout(function(){ angular.element("#focusonthis").trigger("focus"); }, 600);
+				var activeBtnClass = $scope.activeBtnClass;
+				setTimeout(function(){
+					angular.element("#main")
+						.find("#focusonthis").trigger("focus").end()
+						.find("."+activeBtnClass).removeClass(activeBtnClass);
+				}, 500);
 
-				if (a !== "?" && parseInt(a, 10) == ($scope.y * $scope.x)) {
-					$scope.gotit_right = true;
-					var self = $scope;
-					setTimeout(function() { self.next(); }, 600);
+				if (a !== "?") {
+					if (parseInt(a, 10) == ($scope.y * $scope.x)) {
+						$scope.gotit_right = true;
+						var self = $scope;
+						setTimeout(function() { self.next(1); }, 600);
+					}
+					else if((""+a).length >= (""+($scope.y * $scope.x)).length) {
+						$scope.gotit_wrong = true;
+						var self = $scope;
+						setTimeout(function() { self.next(0); }, 600);
+					}
+					$scope.$apply();
 				}
 			}
 		});
 
-		$scope.next = function() {
+		$scope.next = function(correct) {
 			// todo - check for wrongs, reset after last one, etc
-			$scope.ok[$scope.index] = 1;
+			$scope.ok[$scope.index] = correct;
 			$scope.index++;
 			$scope.x = $scope.xs[$scope.index]; 
 			$scope.answer = "?";
 			$scope.gotit_right = false;
+			$scope.gotit_wrong = false;
 			$scope.correct = angular._.reduce($scope.ok, function(a,b){ return a+b; });
 			$scope.$apply();
 		};
@@ -85,8 +99,7 @@ angular
 		};
 
 		$scope.operator = "+";
-		$scope.focusBtnClass = "ui-focus";
-		$scope.activeBtnClass = "ui-active";
+		$scope.activeBtnClass = angular.element.mobile.activeBtnClass;
 	})
 	.config(["$routeProvider", "$httpProvider",
 		function($routeProvider, $httpProvider) {

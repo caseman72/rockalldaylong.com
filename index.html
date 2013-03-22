@@ -6,7 +6,7 @@
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
 	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-	<title>Tables</title>
+	<title>Times Tables</title>
 	<link rel="stylesheet" href="./assets/jquery.mobile-1.3.0.min.css"/>
 	<link rel="stylesheet" href="./assets/custom.css"/>
 	<script src="./assets/jqm-angular-adapter.min.js"></script>
@@ -16,9 +16,9 @@
 <body>
 <div data-role="page" id="main" ng-controller="MainCtrl" ngm-pagebeforeshow="init()" ngm-pageshow="refresh()">
 	<div data-theme="b" data-role="header">
-		<a data-role="button" href="#page1" class="ui-btn-left" data-icon="">Start</a>
-		<a data-role="button" href="#page1" class="ui-btn-right" data-icon="">Options</a>
-		<h3>Count Down</h3>
+		<a data-role="button" class="ui-btn-left smalltext" data-icon="">Start</a>
+		<a data-role="button" class="ui-btn-right smalltext" data-icon="">Options</a>
+		<h3>Times Tables</h3>
 	</div>
 	<div data-role="content">
 		<div class="ui-grid-b">
@@ -28,28 +28,42 @@
 			<div class="ui-block-a">&times;</div>
 			<div class="ui-block-b border">{{y}}</div>
 			<div class="ui-block-c">&nbsp;</div>
-			<div class="ui-block-a">&equals;</div>
-			<div class="ui-block-b">{{answer}}</div>
-			<div class="ui-block-c">
+			<div class="ui-block-a smaller">&equals;</div>
+			<div class="ui-block-b smaller">{{answer}}</div>
+			<div class="ui-block-c smaller">
 				<span ng-show="gotit_wrong" data-role="button" data-icon="delete" data-iconpos="notext" data-inline="true">&nbsp;</span>
 				<span ng-show="gotit_right" data-role="button" data-icon="check" data-iconpos="notext" data-inline="true">&nbsp;</span>
-				<span ng-show="!gotit_right && !gotit_wrong">&nbsp;</span>
+				<span ng-show="!gotit_right && !gotit_wrong" data-role="button" data-icon="alert" data-iconpos="notext" data-inline="true">&nbsp;</span>
 			</div>
 		</div>
 		<br/>
-		<div class="ui-grid-b">
-			<div class="ui-block-a"><a id="num7" ngm-vclick="guess(7)" data-role="button" class="ui-btn-left" data-icon="">7</a></div>
-			<div class="ui-block-b"><a id="num8" ngm-vclick="guess(8)" data-role="button" class="ui-btn-left" data-icon="">8</a></div>
-			<div class="ui-block-c"><a id="num9" ngm-vclick="guess(9)" data-role="button" class="ui-btn-left" data-icon="">9</a></div>
-			<div class="ui-block-a"><a id="num4" ngm-vclick="guess(4)" data-role="button" class="ui-btn-left" data-icon="">4</a></div>
-			<div class="ui-block-b"><a id="num5" ngm-vclick="guess(5)" data-role="button" class="ui-btn-left" data-icon="">5</a></div>
-			<div class="ui-block-c"><a id="num6" ngm-vclick="guess(6)" data-role="button" class="ui-btn-left" data-icon="">6</a></div>
-			<div class="ui-block-a"><a id="num1" ngm-vclick="guess(1)" data-role="button" class="ui-btn-left" data-icon="">1</a></div>
-			<div class="ui-block-b"><a id="num2" ngm-vclick="guess(2)" data-role="button" class="ui-btn-left" data-icon="">2</a></div>
-			<div class="ui-block-c"><a id="num3" ngm-vclick="guess(3)" data-role="button" class="ui-btn-left" data-icon="">3</a></div>
-			<div class="ui-block-a"><a id="keybs" ngm-vclick="guess('bs')" data-role="button" data-iconpos="notext" data-icon="arrow-l">&nbsp;</a></div>
-			<div class="ui-block-b"><a id="num0" ngm-vclick="guess(0)" data-role="button" class="ui-btn-left" data-icon="">0</a></div>
-			<div class="ui-block-c"><a id="keyenter"ngm-vclick="guess('enter')"  data-role="button" data-iconpos="notext" data-icon="check">&nbsp;</a></div>
+		<div data-role="navbar" data-iconpos="top">
+			<ul>
+				<li><a id="num7" ngm-vclick="guess(7)" data-role="button" class="ui-btn-left" data-icon="">7</a></li>
+				<li><a id="num8" ngm-vclick="guess(8)" data-role="button" class="ui-btn-left" data-icon="">8</a></li>
+				<li><a id="num9" ngm-vclick="guess(9)" data-role="button" class="ui-btn-left" data-icon="">9</a></li>
+			</ul>
+		</div>
+		<div data-role="navbar" data-iconpos="top">
+			<ul>
+				<li><a id="num4" ngm-vclick="guess(4)" data-role="button" class="ui-btn-left" data-icon="">4</a></li>
+				<li><a id="num5" ngm-vclick="guess(5)" data-role="button" class="ui-btn-left" data-icon="">5</a></li>
+				<li><a id="num6" ngm-vclick="guess(6)" data-role="button" class="ui-btn-left" data-icon="">6</a></li>
+			</ul>
+		</div>
+		<div data-role="navbar" data-iconpos="top">
+			<ul>
+				<li><a id="num1" ngm-vclick="guess(1)" data-role="button" class="ui-btn-left" data-icon="">1</a></li>
+				<li><a id="num2" ngm-vclick="guess(2)" data-role="button" class="ui-btn-left" data-icon="">2</a></li>
+				<li><a id="num3" ngm-vclick="guess(3)" data-role="button" class="ui-btn-left" data-icon="">3</a></li>
+			</ul>
+		</div>
+		<div data-role="navbar" data-iconpos="top">
+			<ul>
+				<li><a id="keybs" class="special-notext" ngm-vclick="guess('bs')" data-role="button" data-iconpos="notext" data-icon="arrow-l">&nbsp;</a></li>
+				<li><a id="num0" ngm-vclick="guess(0)" data-role="button" class="ui-btn-left" data-icon="">0</a></li>
+				<li><a id="keyenter" class="special-notext" ngm-vclick="guess('enter')"  data-role="button" data-iconpos="notext" data-icon="check">&nbsp;</a></li>
+			</ul>
 		</div>
 	</div>
 	<a id="focusonthis" data-role="button" class="ui-btn-left" data-icon="" style="height:1px;width:1px;font-size:1px;line-height:1px;">&nbsp;</a>
