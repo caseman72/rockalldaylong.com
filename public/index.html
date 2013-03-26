@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Times (&times) Tables - Desktop</title>
+<style>
+#body {
+	background-color: #EEEEEE;
+	color: #666666;
+	font-family: 'ProximaNova-Thin',Helvetica,Arial,sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+	text-align: center;
+}
+#iPhone4 {
+	position: relative;
+	background: url("/assets/images/phone4_frame.jpg") no-repeat scroll center center transparent;
+	display: block;
+	margin: 30px auto;
+	height: 826px;
+	width: 724px;
+}
+#iPhone4 iframe {
+	background: none repeat scroll 0 0 white;
+	border-width: 0;
+	left: 202px;
+	overflow: hidden;
+	position: absolute;
+	top: 184px;
+	height: 419px;  /* 463 - 419 = 64 - 20 = 44px */
+	width: 319px;
+}
+</style>
+<script type="text/javascript" src="/assets/jquery-1.9.1.min.js"></script>
+<script>
+(function() {
+	var ua = (""+window.navigator.userAgent).toLowerCase();
+	if (ua.match(/iphone|ipod|android/)) {
+		window.location = "/mobile/";
+	}
+	$(document).on("click", "#iPhone4", function(e) {
+		var off = $(this).offset();
+		var x = (e.clientX - off.left);
+		var y = (e.clientY - off.top);
+
+		if (y > 610 && y < 640) {
+			// back button
+			if (x > 220 && x < 250) {
+				window.history.back();
+			}
+			// forward button
+			else if (x > 285 && x < 315) {
+				window.history.forward();
+			}
+		}
+	});
+})();
+</script>
+</head>
+<body id="body">
+<div id="iPhone4">
+	<iframe src="/mobile/"></iframe>
+</div>
+</body>
+</html>

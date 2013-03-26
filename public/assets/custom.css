@@ -1,0 +1,58 @@
+.cwm-grid .ui-block-a,
+.cwm-grid .ui-block-b,
+.cwm-grid .ui-block-c,
+.cwm-grid .ui-block-d,
+.cwm-grid .ui-block-e,
+.cwm-grid .ui-block-f {
+  text-align: center;
+  padding: 2% 0;
+  font-size: 20px;
+  border: 1px solid #f0f0f0;
+}
+.cwm-grid .smaller {
+  padding: 1.8% 0 !important;
+}
+.cwm-grid .smalltext {
+  top: 8px !important;
+}
+.cwm-grid .smalltext .ui-btn-text {
+  font-size: 14px;
+}
+.cwm-grid .div-height div {
+  height: 40px;
+}
+.cwm-grid .top-border {
+  border-top: 2px solid #999;
+}
+.cwm-grid .stats {
+  font-size: 90%;
+}
+.cwm-grid #focusonthis {
+  height: 1px;
+  width: 1px;
+  font-size: 1px;
+  line-height: 1px;
+  color: transparent;
+  background: transparent;
+  border: none;
+}
+.cwm-grid .ui-btn-icon-notext {
+  margin: 0 auto !important;
+}
+.cwm-grid .special-notext > span > span {
+  top: 6px !important;
+}
+.cwm-grid .ui-btn-inner {
+  padding-top: 2.5% !important;
+  padding-bottom: 2.5% !important;
+}
+.cwm-grid .ui-btn-text {
+  font-size: 20px;
+}
+.cwm-grid .ui-select,
+.cwm-grid .ui-select div {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
