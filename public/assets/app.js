@@ -85,8 +85,9 @@ angular
 				var x = xs[i];
 				var stats = angular._.filter(stats_clone, function(item) { return item.correct && (item.x == x || item.y == x)});
 				var average = angular._.reduce(stats, function(sum, item) { return sum + item.ms_per_digit; }, 0) / stats.length;
-				stats_per.push({x: x, ms_per_digit: average});
+				stats_per.push({x: x, ms_per_digit: Math.round(average)});
 			}
+			stats_per = _.sortBy(stats_per, 'ms_per_digit').reverse();
 
 			console.log({stats: stats_per});
 			console.log({stats: stats_clone});
@@ -227,7 +228,7 @@ angular
 			$httpProvider.defaults.headers.get.Accept = "application/x-javascript, text/plain, */*";
 
 			var options = {transition: "slide", speed: "fast"};
-			$routeProvider.when("/", {jqmOptions: options, templateUrl: "#main"})
+			$routeProvider.when("/", {jqmOptions: options, templateUrl: "#main"});
 		}])
 	 .run(["$rootScope",
 		function($rootScope) {

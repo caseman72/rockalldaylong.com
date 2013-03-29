@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" ng-app="tables">
 <head>
-	<base href="/"/>
+	<base href="/mobile/"/>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -64,8 +64,8 @@
 				<li><a id="keyenter" class="special-notext" data-role="button" data-iconpos="notext" data-icon="" title="Enter">&nbsp;</a></li>
 			</ul>
 		</div>
+		<a id="focusonthis" data-role="button" data-icon="">&nbsp;</a>
 	</div>
-	<a id="focusonthis" data-role="button" data-icon="" style="height:1px;width:1px;font-size:1px;line-height:1px;">&nbsp;</a>
 
 	<div id="popupStart" data-role="popup" data-opened="poppedup" data-overlay-theme="c" data-theme="c" data-dismissible="false" style="max-width:400px;" data-disabled="false" data-shadow="true" data-corners="true" data-transition="pop">
 		<div data-role="header" data-theme="a" role="banner">
@@ -74,15 +74,17 @@
 		<div data-role="content" data-theme="d" role="main">
 			<h3 class="ui-title">Directions:</h3>
 			<ol>
-				<li>You have 1 minutes (60 seconds) to complete the 13 (0-12) equations</li>
-				<li>The top number is random (0-12) and changes with every guess</li>
-				<li>The bottom number is random but is constant for the 13 equations</li>
+				<li>You have 5 minutes to complete the 100 (2-9,11,12) equations.</li>
+				<li>The top number is random and changes with every guess.</li>
+				<li>The bottom number is random but is constant for the 10 equations.</li>
+				<li>Any wrong answers are repeated.</li>
 				<li>Press Start to get going!</li>
 			</ol>
 			<a data-role="button" data-inline="true" data-theme="c" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" ngm-vclick="close()">Cancel</a>
 			<a data-role="button" data-inline="true" data-theme="b" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" ngm-vclick="start()">Start</a>
 		</div>
 	</div>
+
 </div>
 </body>
 </html>

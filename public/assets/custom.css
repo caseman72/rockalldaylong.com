@@ -1,3 +1,7 @@
+.ui-title {
+  margin-left: 10% !important;
+  margin-right: 10% !important;
+}
 .cwm-grid .ui-block-a,
 .cwm-grid .ui-block-b,
 .cwm-grid .ui-block-c,
@@ -28,13 +32,13 @@
   font-size: 90%;
 }
 .cwm-grid #focusonthis {
-  height: 1px;
-  width: 1px;
-  font-size: 1px;
-  line-height: 1px;
-  color: transparent;
-  background: transparent;
-  border: none;
+  height: 1px !important;
+  width: 1px !important;
+  font-size: 1px !important;
+  line-height: 1px !important;
+  color: transparent !important;
+  background: transparent !important;
+  border: none !important;
 }
 .cwm-grid .ui-btn-icon-notext {
   margin: 0 auto !important;
