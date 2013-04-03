@@ -44,13 +44,13 @@ angular
 		// stats - model
 		//
 		$scope.start = function() {
-			$scope.poppedup = false;
+			$scope.poppedup.start = false;
 
-			$scope.ys = angular._.shuffle([2,3,4,5,6,7,8,9,11,12]);
+			$scope.ys = angular._.shuffle([2,3,4,5,6,7,8,9]); //,11,12]);
 			$scope.y_index = 0;
 
-			$scope.xs = angular._.shuffle([2,3,4,5,6,7,8,9,11,12]);
-			$scope.x_answers = [0,0,0,0,0,0,0,0,0,0];
+			$scope.xs = angular._.shuffle([0,1,2,3,4,5,6,7,8,9,10]); //,11,12]);
+			$scope.x_answers = [0,0,0,0,0,0,0,0,0,0,0];
 			$scope.x_index = 0;
 
 			$scope.stats = [];
@@ -70,9 +70,9 @@ angular
 		$scope.next_y = function() {
 			$scope.y_index++; // check for done
 
-			var xs = [2,3,4,5,6,7,8,9,11,12];
+			var xs = [0,1,2,3,4,5,6,7,8,9,10]; //,11,12];
 			$scope.xs = angular._.shuffle(xs);
-			$scope.x_answers = [0,0,0,0,0,0,0,0,0,0];
+			$scope.x_answers = [0,0,0,0,0,0,0,0,0,0,0];
 			$scope.x_index = 0;
 
 			var stats_clone = [];
@@ -148,7 +148,7 @@ angular
 					else if ((""+new_val).length >= digits) {
 						$scope.gotit_wrong = true;
 						$scope.stats.push({x: x, y: y, correct: false, answer: answer, digits: digits, ms: ms, ms_per_digit: parseInt(ms / digits, 10)});
-						setTimeout(function() { $scope.next(); }, 250);
+						$scope.poppedup.correct = true;
 					}
 				}
 			}
@@ -156,6 +156,11 @@ angular
 				setTimeout(function(){ $scope.reset_buttons(true); }, 250);
 			}
 		});
+
+		$scope.ok = function() {
+			$scope.poppedup.correct = false;
+			setTimeout(function() { $scope.next(); }, 250);
+		};
 
 		$scope.next = function() {
 			$scope.reset_buttons();
@@ -202,10 +207,11 @@ angular
 		};
 
 		$scope.close = function() {
-			$scope.poppedup = false;
+			$scope.poppedup.start = false;
+			$scope.poppedup.correct = false;
 		};
 
-		$scope.poppedup = false;
+		$scope.poppedup = {};
 		$scope.xs = [ "X" ];
 		$scope.x_index = 0;
 		$scope.ys = [ "Y" ];

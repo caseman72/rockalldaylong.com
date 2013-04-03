@@ -2,6 +2,41 @@
   margin-left: 10% !important;
   margin-right: 10% !important;
 }
+#popupCorrect {
+  margin-top: -200px;
+}
+.cwm-grid-correct .ui-block-a,
+.cwm-grid-correct .ui-block-b,
+.cwm-grid-correct .ui-block-c,
+.cwm-grid-correct .ui-block-d,
+.cwm-grid-correct .ui-block-e,
+.cwm-grid-correct .ui-block-f {
+  text-align: center;
+  padding: 5% 0 10% 0;
+  font-size: 20px;
+  border: 1px solid #f0f0f0;
+}
+.cwm-grid-correct .smaller {
+  padding: 4.5% 0 9% 0 !important;
+}
+.cwm-grid-correct .smalltext {
+  top: 8px !important;
+}
+.cwm-grid-correct .smalltext .ui-btn-text {
+  font-size: 14px;
+}
+.cwm-grid-correct .div-height div {
+  height: 40px;
+}
+.cwm-grid-correct .top-border {
+  border-top: 2px solid #999;
+}
+.cwm-grid-correct .stats {
+  font-size: 90%;
+}
+.cwm-grid-correct .green {
+  color: #090;
+}
 .cwm-grid .ui-block-a,
 .cwm-grid .ui-block-b,
 .cwm-grid .ui-block-c,
